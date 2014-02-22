@@ -1,10 +1,12 @@
 import java.awt.BorderLayout;
+import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
@@ -71,7 +73,8 @@ public class qdStat {
 		myFrame.setContentPane(myContentPanel);
 
 		sortList();
-
+		
+		myFrame.setMinimumSize(new Dimension(300, 20));
 		myFrame.pack();
 		myFrame.setVisible(true);
 
@@ -95,8 +98,14 @@ public class qdStat {
 		// Remove all buttons and add the updated ones
 		buttons.removeAll();
 		for (int i = 0; i < categories.length; i++) {
-			final JButton b = new JButton(categories[i].name + " :"
-					+ categories[i].counter);
+			final JButton b = new JButton();
+			b.setLayout(new BorderLayout());
+			
+			b.add(new JLabel(categories[i].name), BorderLayout.LINE_START);
+			b.add(new JLabel(""+categories[i].counter), BorderLayout.LINE_END);
+					
+//					new JButton(categories[i].name + " :"
+//					+ categories[i].counter);
 			b.setName(categories[i].name);
 			b.addActionListener(new ActionListener() {
 
